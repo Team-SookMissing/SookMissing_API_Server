@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException
-from core.database import get_db_conn
+from .core.database import get_db_conn
 import httpx, logging
-from schemas.schemas import AnalyzeRequest, AnalyzeResponse
-from core.config import settings
-from utils.utils import extract_urls
+from .schemas.schemas import AnalyzeRequest, AnalyzeResponse
+from .core.config import settings
+from .utils.utils import extract_urls
 from pydantic import ValidationError
 
 app = FastAPI(title = "SookMissing API Server")

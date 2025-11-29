@@ -108,7 +108,7 @@ async def analyze_message(req: AnalyzeRequest):
             # 매칭되면 즉시 100점 반환
             return AnalyzeResponse(
                 total_score=100,
-                risk_level="심각",
+                risk_level="위험",
                 context_score=70,
                 url_score=30,
                 smishing_type="BLACKLIST_MATCH",

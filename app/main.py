@@ -1,13 +1,30 @@
 from fastapi import FastAPI, HTTPException
 from .core.database import get_db_conn
+from .core.config import settings
 import httpx, logging
 from .schemas.schemas import AnalyzeRequest, AnalyzeResponse
 from .core.config import settings
 from .utils.utils import extract_urls
 from pydantic import ValidationError
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title = "SookMissing API Server")
 logger = logging.getLogger(__name__)
+
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:9000",
+    settings.ANALYZER_URL
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers=["*"],
+)
 
 async def exists_in_blacklist(url: str) -> bool:
     conn = await get_db_conn()

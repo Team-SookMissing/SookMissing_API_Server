@@ -1,5 +1,5 @@
 import aiomysql
-from core.config import settings
+from .config import settings
 
 async def get_db_conn():
     return await aiomysql.connect(

@@ -111,10 +111,11 @@ async def analyze_message(req: AnalyzeRequest):
                 risk_level="위험",
                 context_score=70,
                 url_score=30,
-                smishing_type="BLACKLIST_MATCH",
-                reason=f"문자 내 URL 중 블랙리스트에 등록된 URL 발견: {url}",
+                smishing_type="악성(스미싱) URL로 분류된 링크",
+                reason=f"해당 URL은 공식적으로 악성(스미싱) URL로 분류된 링크이므로 절대 접속하지 마세요.",
                 official_url=None,
                 sender_status=None,
+                solution="문자 메시지와 URL을 즉시 삭제하세요. 만약 이미 링크를 클릭했다면, 은행·카드사 고객센터에 연락해 이상 거래 여부를 확인하고 통신사 고객센터에 문의해 스팸·소액결제 차단 상태를 확인하세요. 스미싱 의심 문자는 118 사이버범죄신고센터에 신고할 수 있습니다."
             )
     
     # 3. DB에서 매칭된 URL이 없다면 분석엔진 호출

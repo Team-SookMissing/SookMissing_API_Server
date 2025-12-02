@@ -22,5 +22,6 @@ class AnalyzeResponse(BaseModel):
     reason: str = Field(..., description="최종 판단 근거")
     official_url: Optional[str] = None
     sender_status: Optional[str] = None
+    solution: str
 
     
